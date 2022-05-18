@@ -6,14 +6,14 @@ import MyComponent from './Example/MyComponent';
 import Nav from './Nav/Nav';
 import Home from './Home/Home';
 import ListUser from './Users/ListUser';
+import DetailUser from './Users/DetailUser';
 
 import {
   BrowserRouter,
-  Routes,
-  Route
+  Switch,
+  Route,
+  Link
 } from "react-router-dom";
-
-
 
 function App() {
   return (
@@ -23,12 +23,25 @@ function App() {
 
         <header className="App-header">  
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/todo" element={<TodoList />} />
-            <Route path="/example" element={<MyComponent />} />
-            <Route path="/user" element={<ListUser />} />
-          </Routes>
+        <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/todo">
+              <TodoList />
+            </Route>
+            <Route path="/jobs">
+              <MyComponent />
+            </Route>
+            <Route path="/user" exact>
+              <ListUser />
+            </Route>
+
+            <Route path="/user/:id">
+              <DetailUser />
+            </Route>
+
+          </Switch>
             
         </header>
 
